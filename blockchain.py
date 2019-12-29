@@ -14,10 +14,16 @@ def add_value(transaction_amount, last_transaction=[1]):
     a single digit
     """
     blockchain.append([last_transaction, transaction_amount])
-    print(blockchain)
+    
 
-add_value(2) 
-add_value(last_transaction=get_last_block_details(), transaction_amount=3)
+def get_user_input():
+    return float(input('Your transaction amount please: '))
 
 
- 
+amount = get_user_input()
+add_value(amount) 
+
+amount = get_user_input()
+add_value(last_transaction=get_last_block_details(), transaction_amount=amount)
+
+print(blockchain)
