@@ -23,10 +23,10 @@ def get_user_input():
 amount = get_user_input()
 add_value(amount) 
 
-amount = get_user_input()
-add_value(last_transaction=get_last_block_details(), transaction_amount=amount)
+while True:
+    amount = get_user_input()
+    add_value(last_transaction=get_last_block_details(), transaction_amount=amount)
 
-
-for block in blockchain:
-    print('Outputting Block')
-    print(block)
+    for block in blockchain:
+        print('Outputting Block')
+        print(block)
