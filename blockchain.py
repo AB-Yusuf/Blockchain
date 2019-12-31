@@ -37,10 +37,17 @@ while True:
     print('Pleasechoose')
     print('1. Add a new transaction value')
     print('2. Display each block in the blockchain')
+    print('q: Quit')
     
     user_choice = get_user_choice()
     if user_choice == '1':
         amount = get_transaction_amount()
         add_value(last_transaction=get_last_block_details(), transaction_amount=amount)
-    else:
+    elif user_choice == '2':
         print_blockchain_elements()
+    elif user_choice == 'q':
+        break
+    else:
+        print('Invalid input, pick a value from the list.')
+
+print('Session Ended')
