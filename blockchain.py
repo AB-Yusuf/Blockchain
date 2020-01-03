@@ -1,3 +1,5 @@
+#Stopped at video 54
+
 """
 Seeding blockhain with an initial value of 1
 """
@@ -32,12 +34,30 @@ def print_blockchain_elements():
     for block in blockchain:
             print('Outputting Block')
             print(block)
+            
+def verify_chain():
+    block_index = 0
+    is_valid = True
+    
+    for block in blockchain:
+        if block_index == 0:
+            block_index += 1
+            continue
+        elif block[0] == blockchain[block_index-1]:
+            is_valid = True
+        else:
+            is_valid = False
+            break
+        block_index += 1
+    return is_valid
     
 
 while True:
-    print('Pleasechoose')
+    print('Please choose')
     print('1. Add a new transaction value')
     print('2. Display each block in the blockchain')
+    print('m: Manipulate the chain')
+    print('v: verify chain')
     print('q: Quit')
     
     user_choice = get_user_choice()
@@ -46,9 +66,19 @@ while True:
         add_transaction(last_transaction=get_last_block_details(), transaction_amount=amount)
     elif user_choice == '2':
         print_blockchain_elements()
+        print(blockchain)
+    elif user_choice == 'm':
+        if len(blockchain) >= 1:
+            blockchain[0] = 2
+    elif user_choice == 'v':
+        verify_chain()
     elif user_choice == 'q':
         break
     else:
         print('Invalid input, pick a value from the list.')
+    
+    if not verify_chain():
+        print('Invalid blockchain')
+        break
 
 print('Session Ended')
