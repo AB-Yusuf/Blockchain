@@ -34,6 +34,9 @@ def print_blockchain_elements():
     for block in blockchain:
             print('Outputting Block')
             print(block)
+    else:
+        print('Blocks display complete', end="\n\n")
+        
             
 def verify_chain():
     block_index = 0
@@ -50,9 +53,10 @@ def verify_chain():
             break
         block_index += 1
     return is_valid
-    
 
-while True:
+sentinel = True    
+
+while sentinel:
     print('Please choose')
     print('1. Add a new transaction value')
     print('2. Display each block in the blockchain')
@@ -66,14 +70,13 @@ while True:
         add_transaction(last_transaction=get_last_block_details(), transaction_amount=amount)
     elif user_choice == '2':
         print_blockchain_elements()
-        print(blockchain)
     elif user_choice == 'm':
         if len(blockchain) >= 1:
             blockchain[0] = 2
     elif user_choice == 'v':
         verify_chain()
     elif user_choice == 'q':
-        break
+        sentinel = False
     else:
         print('Invalid input, pick a value from the list.')
     
@@ -81,4 +84,7 @@ while True:
         print('Invalid blockchain')
         break
 
+else:
+    print('User Left')
+    
 print('Session Ended')
